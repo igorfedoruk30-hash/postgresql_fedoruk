@@ -53,3 +53,51 @@ FROM schema_14
 ORDER BY last_name ASC
 LIMIT 5 OFFSET 5;
 
+--4 практическая
+
+-- 1
+SELECT *
+FROM schema_14
+WHERE birth_date > '2005-01-01';
+
+-- 2
+SELECT first_name, last_name, birth_date
+FROM schema_14
+ORDER BY birth_date DESC;
+
+-- 3
+SELECT *
+FROM schema_14
+WHERE birth_date BETWEEN '2003-01-01' AND '2008-12-31';
+
+-- 4
+SELECT *
+FROM schema_14
+WHERE EXTRACT(YEAR FROM birth_date) = 2007
+ORDER BY last_name;
+
+-- 5
+SELECT
+    first_name,
+    last_name,
+    TO_CHAR(birth_date, 'DD.MM.YYYY') AS birthday
+FROM schema_14
+WHERE EXTRACT(YEAR FROM birth_date) = 2007
+ORDER BY birth_date;
+
+-- 6
+SELECT *
+FROM schema_14
+WHERE birth_date::time BETWEEN '12:00:00' AND '12:59:59'
+ORDER BY birth_date DESC;
+
+-- 8
+SELECT *
+FROM schema_14
+WHERE age(birth_date) >= INTERVAL '18 years';
+
+-- 9
+SELECT *
+FROM schema_14
+WHERE EXTRACT(DOW FROM birth_date) IN (0,6)
+ORDER BY birth_date DESC;
