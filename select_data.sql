@@ -101,3 +101,9 @@ SELECT *
 FROM schema_14
 WHERE EXTRACT(DOW FROM birth_date) IN (0,6)
 ORDER BY birth_date DESC;
+
+-- Выбор пользователей без оплаты
+SELECT first_name, last_name
+FROM schema_14
+WHERE payment IS NULL
+ORDER BY last_name, first_name;
