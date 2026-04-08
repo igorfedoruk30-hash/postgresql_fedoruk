@@ -107,3 +107,69 @@ SELECT first_name, last_name
 FROM schema_14
 WHERE payment IS NULL
 ORDER BY last_name, first_name;
+
+-- Практическая 6:
+
+-- 1. Пользователи с фамилией на "Р", сортировка по фамилии и имени
+SELECT *
+FROM schema_14
+WHERE last_name LIKE 'Р%'
+ORDER BY last_name, first_name;
+
+-- 2. Пользователи с почтой mail.ru
+SELECT first_name, last_name
+FROM schema_14
+WHERE e_mail LIKE '%@mail.ru'
+ORDER BY last_name, first_name;
+
+-- 3. Имя из 4 букв
+SELECT first_name, last_name
+FROM schema_14
+WHERE CHAR_LENGTH(first_name) = 4
+ORDER BY last_name, first_name;
+
+-- 4. Совершеннолетние, номер заканчивается на 00
+SELECT *
+FROM schema_14
+WHERE DATE_PART('year', AGE(birth_date)) >= 18
+  AND phone LIKE '%00'
+ORDER BY birth_date;
+
+-- 5. Оплата вне интервала [-100000, 100000]
+SELECT *
+FROM schema_14
+WHERE ABS(payment) > 100000
+ORDER BY payment;
+
+-- 6. Знак оплаты
+SELECT first_name,
+       last_name,
+       SIGN(payment) AS sign_payment
+FROM schema_14
+ORDER BY sign_payment;
+
+-- 7. Каждый третий пользователь (id кратны 3)
+SELECT id, email
+FROM schema_14
+WHERE MOD(id, 3) = 0;
+
+-- 8. Количество пользователей до 20 лет
+SELECT COUNT(*) AS user20
+FROM schema_14
+WHERE DATE_PART('year', AGE(birth_date)) < 20;
+
+-- 9. Общая задолженность (отрицательные оплаты)
+SELECT SUM(payment) AS minus
+FROM schema_14
+WHERE payment < 0;
+
+-- 10. Средняя положительная оплата
+SELECT AVG(payment) AS avg_positive_payment
+FROM schema_14
+WHERE payment > 0;
+
+-- 11. Пользователь с максимальной оплатой
+SELECT *
+FROM schema_14
+ORDER BY payment DESC
+LIMIT 1;
