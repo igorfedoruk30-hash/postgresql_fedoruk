@@ -49,4 +49,4 @@ id, e_mail, first_name, last_name, middle_name, birth_date, phone, role_name, lo
 (31, '[volkova@my.example.com](mailto:volkova@my.example.com)', 'Мария', 'Волкова', 'Дмитриевна', '2005-09-05 13:50:00', '89061234567', 'user', 'volkova31', 'pass31'),
 (32, '[egorov@my.example.com](mailto:egorov@my.example.com)', 'Артём', 'Егоров', 'Павлович', '2006-11-30 17:25:00', '89071234567', 'editor', 'egorov32', 'pass32'),
 (33, '[smirnova@my.example.com](mailto:smirnova@my.example.com)', 'Наталья', 'Смирнова', 'Олеговна', '2004-04-18 12:40:00', '89081234567', 'user', 'smirnova33', 'pass33'),
-(34, '[fedorov@my.example.com](mailto:fedorov@my.example.com)', 'Алексей', 'Фёдоров', 'Ильич', '2003-08-27 19:10:00', '89091234567', 'administrator', 'fedorov34', 'pass34');
+(34, '[fedoruv@my.example.com](mailto:fedorov@my.example.com)', 'Алексей', 'Фёдоров', 'Ильич', '2003-08-27 19:10:00', '89091234567', 'administrator', 'fedorov34', 'pass34');
