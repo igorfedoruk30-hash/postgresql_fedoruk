@@ -48,3 +48,19 @@ ALTER COLUMN birth_date SET NOT NULL;
 UPDATE schema_14
 SET birth_date = birth_date + INTERVAL '1 hour'
 WHERE birth_date::time >= '13:00:00';
+
+--Практическая 7:
+
+ALTER TABLE schema_14 DROP COLUMN payment;
+
+ALTER TABLE schema_14 ADD COLUMN role_name VARCHAR(20);
+ALTER TABLE schema_14 ALTER COLUMN role_name SET NOT NULL;
+
+ALTER TABLE schema_14 ADD COLUMN login VARCHAR(64);
+ALTER TABLE schema_14 ADD COLUMN password VARCHAR(64);
+
+ALTER TABLE schema_14
+ADD CONSTRAINT fk_schema14_role
+FOREIGN KEY (role_name) REFERENCES role(name);
+
+ALTER TABLE schema_14 ADD PRIMARY KEY (id);
