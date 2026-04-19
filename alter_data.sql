@@ -61,6 +61,12 @@ ALTER TABLE schema_14 ADD COLUMN password VARCHAR(64);
 
 ALTER TABLE schema_14
 ADD CONSTRAINT fk_schema14_role
+
+-- связь пользователей и ролей
+ALTER TABLE schema_14
+ADD CONSTRAINT fk_user_role
+FOREIGN KEY (role_name) REFERENCES role(name);
+
 FOREIGN KEY (role_name) REFERENCES role(name);
 
 ALTER TABLE schema_14 ADD PRIMARY KEY (id);
