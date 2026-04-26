@@ -173,3 +173,33 @@ SELECT *
 FROM schema_14
 ORDER BY payment DESC
 LIMIT 1;
+
+--практическая 9
+
+--пользователи с правами view и edit
+
+select distinct first_name, middle_name, last_name
+from schema_14
+where role_name in (
+    select role_name
+    from role_permission
+    where permission_name in ('view', 'edit')
+    group by role_name
+    having count(distinct permission_name) = 2
+);
+
+--пользователи с правами view или edit
+
+select distinct first_name, middle_name, last_name
+from schema_14
+where role_name in (
+    select role_name
+    from role_permission
+    where permission_name in ('view', 'edit')
+);
+
+--Группы 1 курса
+
+select *
+from groups
+where course = 1;
