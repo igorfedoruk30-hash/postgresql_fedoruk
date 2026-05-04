@@ -203,3 +203,35 @@ where role_name in (
 select *
 from groups
 where course = 1;
+
+--практическая 10
+
+SELECT 
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.e_mail,
+    p.name AS position
+FROM schema_14 u
+JOIN university_member um ON u.id = um.user_id
+JOIN position p ON um.position_id = um.position_id;
+
+SELECT 
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.e_mail,
+    g.name AS group_name
+FROM schema_14 u
+JOIN group_member gm ON u.id = gm.member_id
+JOIN groups g ON gm.group_id = g.id;
+
+SELECT 
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.e_mail,
+    d.name AS department
+FROM schema_14 u
+JOIN university_member um ON u.id = um.user_id
+JOIN department d ON um.department_id = d.id;
