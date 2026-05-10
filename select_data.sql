@@ -235,3 +235,78 @@ SELECT
 FROM schema_14 u
 JOIN university_member um ON u.id = um.user_id
 JOIN department d ON um.department_id = d.id;
+
+-- Практическая работа 12-13
+
+-- 1. ФИО первых 10 пользователей из отсортированного в алфавитном порядке списка
+-- с указанием названия позиции пользователя
+
+SELECT
+    CONCAT_WS(' ', u.last_name, u.first_name, u.middle_name) AS fio,
+    um.position_name AS position_name
+FROM public.schema_14 AS u
+JOIN public.university_member AS um
+    ON um.user_id = u.id
+ORDER BY
+    u.last_name,
+    u.first_name,
+    u.middle_name
+LIMIT 10;
+
+
+-- 2. Все группы и количество обучающихся в каждой.
+-- Количество обучающихся вывести в колонке gr_count
+
+SELECT
+    g.name AS group_name,
+    COUNT(gm.member_id) AS gr_count
+FROM public.groups AS g
+LEFT JOIN public.group_member AS gm
+    ON gm.group_id = g.id
+GROUP BY
+    g.id,
+    g.name
+ORDER BY
+    g.name;
+
+
+-- 3. Все позиции и количество пользователей в каждой.
+-- Количество пользователей вывести в колонке pos_count
+
+SELECT
+    p.name AS position_name,
+    COUNT(um.id) AS pos_count
+FROM public."position" AS p
+LEFT JOIN public.university_member AS um
+    ON um.position_name = p.name
+GROUP BY
+    p.name
+ORDER BY
+    p.name;
+
+
+-- 4. Все роли и количество пользователей в каждой.
+-- Количество пользователей вывести в колонке role_count
+
+SELECT
+    r.name AS role_name,
+    COUNT(u.id) AS role_count
+FROM public.role AS r
+LEFT JOIN public.schema_14 AS u
+    ON u.role_name = r.name
+GROUP BY
+    r.name
+ORDER BY
+    r.name;
+
+
+-- 5. Группы 1 курса
+
+SELECT
+    g.id,
+    g.name,
+    g.course
+FROM public.groups AS g
+WHERE g.course = 1
+ORDER BY
+    g.name;
