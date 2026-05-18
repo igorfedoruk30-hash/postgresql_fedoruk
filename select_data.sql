@@ -310,3 +310,43 @@ FROM public.groups AS g
 WHERE g.course = 1
 ORDER BY
     g.name;
+
+--практическая 15-16
+CREATE VIEW user_positions AS
+SELECT 
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.e_mail,
+    p.name AS position
+FROM schema_14 u
+LEFT JOIN university_member um 
+    ON u.id = um.user_id
+LEFT JOIN "position" p 
+    ON um.position_id = p.id;
+
+CREATE VIEW student_groups AS
+SELECT 
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.e_mail,
+    g.name AS group_name
+FROM schema_14 u
+JOIN group_member gm 
+    ON u.id = gm.member_id
+JOIN groups g 
+    ON gm.group_id = g.id;
+
+CREATE VIEW user_departments AS
+SELECT 
+    u.first_name,
+    u.middle_name,
+    u.last_name,
+    u.e_mail,
+    d.name AS department
+FROM schema_14 u
+LEFT JOIN university_member um 
+    ON u.id = um.user_id
+LEFT JOIN department d 
+    ON um.department_id = d.id;
